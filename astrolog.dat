@@ -1,0 +1,141 @@
+@0308  ; Astrolog (5.41G) default settings file astrolog.dat
+
+-z0 0             ; Default Daylight time setting   [0 standard, 1 daylight]
+-z -2:00          ; Default time zone               [hours before GMT      ]
+-zl  26:43:00E 58:23:00N  ; Default longitude and latitude
+
+-Yz 0   ; Time minute addition to be used when "now" charts are off.
+-n      ; Uncomment this line to start with the chart for "now".
+
+_s      ; Zodiac selection          ["_s" is tropical, "=s" is sidereal]
+:s 0    ; Zodiac offset value       [Change "0" to desired offset      ]
+-A 5    ; Number of aspects         [Change "5" to desired number      ]
+-c 0    ; House system              [Change "0" to desired system      ]
+=k      ; Ansi color text           ["=k" is color, "_k" is normal     ]
+:d 48   ; Searching divisions       [Change "12" to desired divisions  ]
+_b0     ; Print zodiac seconds      ["_b0" to minute, "=b0" to second  ]
+=b      ; Use ephemeris files       ["=b" uses them, "_b" doesn't      ]
+=C      ; Show house cusp objects   ["_C" hides them, "=C" shows them  ]
+:w 4    ; Wheel chart text rows     [Change "4" to desired wheel rows  ]
+:I 80   ; Text screen columns       [Change "80" to desired columns    ]
+-YQ 24  ; Text screen scroll limit  [Change "24" or set to "0" for none]
+=Yd     ; European date format      ["_Yd" is MDY, "=Yd" is DMY        ]
+=Yt     ; European time format      ["_Yt" is AM/PM, "=Yt" is 24 hour  ]
+=YC     ; Smart cusp displays       ["=YC" is smart, "_YC" is normal   ]
+=Y8     ; Clip text to end of line  ["=Y8" clips, "_Y8" doesn't clip   ]
+-YP 1   ; Arbic Parts in night charts. (see Helpfile)
+
+
+; SWITCHES, NOT SUPPORTED BY ORIGINAL ASTROLOG:
+
+=YU       ; Stars alternat. restriction. "=YU" alternat., "_YU" original.
+-YUo 0.8  ; Orbs of fixed stars. Default 1.2 deg.
+-YUa 1    ; Number of star aspects taked into acconunt. Default 1.
+-YUb1 9   ; Stars colours (magnitude less than 1.0). Default 9 (red).
+-YUb2 3   ; Stars colours (magnitude between 1.0 and 2.0). Default 3 (orange).
+-YUb3 1   ; Stars colours (magnitude over .02). Default 1 (maroon).
+-YPo 1.0  ; Orbs of Arabic Parts. Default 1.0 deg.
+-YPa 1    ; Number of Arabic Parts apects taked into account. Default 1.
+-YPs 5    ; Number of Arabic Parts aspects showed. Default 5.
+=YSa      ; Aspects showed by default as applying-separating.
+=YSj      ; Influence text chart shows by default more info.
+_YSs      ; Aspect listing shows by default also aspect summary.
+-YOc 3.0  ; Temporary decreasing of orbs in comparison charts.
+          ; Default 2.5 times.
+-YOp 6.0  ; Temporary decreasing of orbs with parallel aspects.
+          ; Default 6.0 times.
+-YOP 0.25 ; Power of parallels relatively to conjunctions.
+          ; Default 0.25
+_YH       ; Circumpolar flip of MC. "=YH" flips,"_YH" doesn't.
+=Ym       ; Month alternat. format. "=Ym" alternat., "_Ym" original.
+=YZ       ; NESW local horizon. "_YZ" original ENWS.
+=YD       ; Dispositors' glyphs on the wheel. "=YD" on, "_YD" off.
+
+
+; DEFAULT RESTRICTIONS:
+
+-YR 1 10     0 0 0 0 0 0 0 0 0 0      ; Planets
+-YR 11 20    1 1 1 1 1 0 1 0 1 1      ; Minor planets
+-YR 21 32    0 1 1 0 1 1 0 1 1 0 1 1  ; House cusps
+-YR 33 41    1 1 1 1 1 1 1 1 1        ; Uranians
+
+; DEFAULT TRANSIT RESTRICTIONS:
+
+-YRT 1 10    0 1 0 0 0 0 0 0 0 0      ; Planets
+-YRT 11 20   1 1 1 1 1 1 1 1 1 1      ; Minor planets
+-YRT 21 32   1 1 1 1 1 1 1 1 1 1 1 1  ; House cusps
+-YRT 33 41   1 1 1 1 1 1 1 1 1        ; Uranians
+
+; DEFAULT PROGRESSION RESTRICTIONS (FOR DUAL CHARTS ONLY):
+
+-YRP 1 10    0 0 0 0 0 0 0 1 1 1      ; Planets
+-YRP 11 20   1 1 1 1 1 0 1 0 1 1      ; Minor planets
+-YRP 21 32   0 1 1 0 1 1 0 1 1 0 1 1  ; House cusps
+-YRP 33 41   1 1 1 1 1 1 1 1 1        ; Uranians
+
+-YR0 0 0  ; Restrict sign, direction changes
+
+
+; DEFAULT ASPECT ORBS:
+
+-YAo 1 5     7.0 6.0 6.0 6.0 6.0          ; Major aspects
+-YAo 6 11    3.0 3.0 3.0 3.0 2.0 2.0      ; Minor aspects
+-YAo 12 18   1.0 1.0 1.0 1.0 1.0 1.0 1.0  ; Obscure aspects
+
+; DEFAULT MAX PLANET ASPECT ORBS:
+
+-YAm 1 10    360 360 360 360 360 360 360 360 360 360
+-YAm 11 20   360 360 360 360 360   3   3   3   3   3
+-YAm 21 32   360 360 360 360 360 360 360 360 360 360 360 360
+-YAm 33 41   360 360 360 360 360 360 360 360 360
+
+; DEFAULT PLANET ASPECT ORB ADDITIONS:
+
+-YAd 1 10    1.0 1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+-YAd 11 20   0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+-YAd 21 32   0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+
+
+; DEFAULT INFLUENCES:
+
+-Yj 1 10    30 25 10 10 10 10 10 10 10 10        ; Planets
+-Yj 11 20   5 5 5 5 5 5 5 5 5 5                  ; Minor planets
+-Yj 21 32   20 3 3 10 3 3 10 3 3 15 3 3          ; Cusp objects
+-Yj 33 41   3 3 3 3 3 3 3 5 3                    ; Uranians
+
+-YjC 1 12   7 1 1 3 1 1 3 1 1 5 1 1  ; Houses
+
+-YjA 1 5    1.000 0.707 0.500 0.577 0.408              ; Major aspects
+-YjA 6 11   0.289 0.289 0.250 0.250 0.200 0.200        ; Minor aspects
+-YjA 12 18  0.141 0.141 0.192 0.192 0.100 0.100 0.192  ; Obscure aspects
+
+; DEFAULT TRANSIT INFLUENCES:
+
+-YjT 1 10    10 4 8 9 20 25 30 35 40 45  ; Planets
+-YjT 11 20   10 10 10 10 10 20 5 1 1 1   ; Minor planets
+-YjT 33 41   50 50 50 50 50 50 50 50 50  ; Uranians
+
+-Yj0 7 3 5 2 ; In ruling sign, exalted sign, ruling house, exalted house.
+
+
+; DEFAULT COLORS:
+
+-YkC 9 11 10 12                 ; Element colors
+-YkA 1 18  11 12 9 10 14 13 13 3 3 6 6 6 1 5 5 1 1 5  ; Aspect colors
+-Yk0 1 7   9 3 11 10 14 12 5    ; Rainbow colors
+-Yk  0 8   0 15 7 8 1 2 6 4 13  ; Main colors
+
+
+; GRAPHICS DEFAULTS:
+
+_X              ; Graphics chart flag ["_X" is text, "=X" is graphics]
+:Xw 480 480     ; Default X and Y resolution
+:Xbb            ; Bitmap file type
+:YXG 1111       ; Glyph selections
+:YXg 20         ; Aspect grid cells
+:YXf 0          ; Use actual fonts
+:YXp 0          ; PostScript paper orientation
+:YXp0 8.5 11.0  ; PostScript paper X and Y inch sizes
+:YX -1 16       ; PC hi-res and lo-res graphics modes
+
+; astrolog.dat

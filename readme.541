@@ -1,0 +1,323 @@
+--
+
+ AAAAA    SSSSS   TTTTTTT  RRRRRR    OOOOO   L         OOOOO    GGGGG
+A     A  S     S     T     R     R  O     O  L        O     O  G     G
+A     A  S           T     R     R  O     O  L        O     O  G
+AAAAAAA   SSSSS      T     RRRRRR   O     O  L        O     O  G  GGGG
+A     A        S     T     R   R    O     O  L        O     O  G     G
+A     A  S     S     T     R    R   O     O  L        O     O  G     G
+A     A   SSSSS      T     R     R   OOOOO   LLLLLLL   OOOOO    GGGGG
+
+                         **  VERSION 5.41  **
+
+
+Astrolog: currently used in over 30 countries on six continents!
+
+--
+Astrolog 5.41 is a modified version of Astrolog 5.30. The older Placalc
+ephemeris module has been replaced with the Swiss Ephemeris module.
+The changes were made by Alois Treindl.
+
+Astrolog is relatively unique in astrology software for the following reasons:
+  (1) It's 100% freeware. :)
+  (2) It runs on multiple platforms, such as DOS, Windows, Mac, and Unix.
+  (3) The full source code is available.
+  (4) Features are accessible from the command line and from shell scripts.
+  (5) It offers many features not found in most other programs.
+
+"The Best Freeware/Shareware Program of 1995 is Astrolog for Windows"
+- American Astrology, March 1996
+
+"One exceptionally good freeware program is available to astrologers -
+good enough to be worthy of review with the main commercial programs.
+This is Astrolog..." - The Mountain Astrologer, November 1995
+
+"For a free program to have such a superb ephemeris with an 8000-year
+range is incredible." - American Astrology, November 1994
+
+--
+
+A list of the main features in Astrolog:
+
+Position calculation features:
+  Positions of Sun through Pluto and the house cusps.
+  Positions of Chiron and the four main asteroids.
+  Positions of True and Mean nodes, Part of Fortune, Vertex, and East Point.
+  Positions of Lilith.
+  Positions of the eight Uranian planets.
+  Positions of over 40 fixed stars.
+  Positions of over 170 Arabic parts and their formulas.
+  Option to use any or all of accurate 8400 year ephemeris.
+
+Computation features:
+  Fourteen house systems.
+  Tropical and sidereal zodiac.
+  Specify zodiac starting position / ayanamsa.
+  Heliocentric and other planet centered charts.
+  Applying and separating aspects.
+  Parallel and contraparallel aspects.
+  Harmonic charts.
+  Solar charts with objects on Ascendant or Midheaven.
+  Decan positions.
+  Specify your own positions for planets.
+  Positions relative to ecliptic or equator.
+  Local horizon positions in prime vertical coordinates.
+
+Display formats:
+  Generic position listing.
+  Wheel charts.
+  Aspect and midpoint grids.
+  List aspect configurations such as Yods.
+  List aspects sorted by influence.
+  List midpoints sorted by position.
+  Local horizon positions.
+  Times of planets rising and setting.
+  Solar system orbit charts.
+  Gauquelin sector charts.
+  Astro-graph charts.
+  List latitude crossings in astro-graph charts.
+  Generic monthly and yearly calendars.
+  Ephemeris tables.
+  Biorhythm charts.
+
+Transit and progression features:
+  Secondary progressions and solar arc progressions.
+  Specify your own progression rate.
+  Times of exact aspects among transiting planets.
+  Times of planets changing sign or direction.
+  Times of lunar phases and season changes.
+  Times of exact aspects in a progressed chart.
+  Times of exact transit hits.
+  Times of transits to house cusps.
+  Times of solar, lunar, and other returns.
+  Times of exact transits from progressed planets.
+  List transits to natal planets within orb in influence order.
+  List aspects within orb among transiting planets in influence order.
+  Transits to composite and other no-time charts.
+
+Relationship chart features:
+  Synastry charts.
+  Composite charts.
+  Time space midpoint charts.
+  Weighted relationship charts.
+  Display elapsed time between charts.
+  Aspect and midpoint grids between two charts.
+  Aspect and midpoint lists between two charts.
+  Automatic progressed to natal comparison chart.
+
+Interpretation features:
+  Influence charts sorting planets and signs by power.
+  Interpret natal positions and natal aspects.
+  Interpret transits and midpoints.
+  Interpret transiting aspects and sign and direction changes.
+  Interpret aspects and midpoints between charts.
+  Interpret synastry charts.
+
+Graphics features:
+  Graphic wheel chart.
+  Graphic bi-wheel comparison / transit chart.
+  Graphic tri-wheels and quad-wheels.
+  Graphic aspect / midpoint and relationship aspect / midpoint grids.
+  Graphic astro-graph chart on a map of the world.
+  Graphic local horizon, polar horizon, Gauquelin wheel, and orbit charts.
+  Graphic ephemeris tracking chart.
+  Graphic calendars and biorhythms.
+  Dispositor graph chart.
+  Plot positions among the astronomical constellations.
+  Smoothly animate charts through time at varying rates.
+  Continuously update chart to current moment now.
+  Animate a rotating globe.
+  Timed exposures for horizon and orbit charts.
+  Create PostScript graphic files.
+  Create graphic X11 and Windows bitmap files.
+  Create Windows metafiles.
+
+Customization options:
+  Initialization file for default settings.
+  Choose what transiting and natal planets to include in charts.
+  Choose among 18 major and minor aspects, or define your own.
+  Specify aspect orbs.
+  Specify the maximum orb allowed to a planet.
+  Specify wider orbs for any planet.
+  Display zodiac positions to the nearest second.
+  DMY & MDY date formats and 24 hour & am/pm time formats.
+  Display locations in hours & minutes or 360 degree form.
+  Customize interpretation strings.
+  Customize colors.
+  Define your own orbital elements for planets.
+  Choose among graphic glyphs for certain signs and planets.
+  Specify influence of planets and planets when transiting.
+  Specify influence of houses and aspects.
+
+Chart access features:
+  Quick charts for the current moment now.
+  Save and load chart time and place to file.
+  Save and load chart positions to file.
+  Save text output directly to file.
+  Relocate charts.
+  Cast a chart a specified time ahead of any chart.
+
+System features:
+  Display text charts in Ansi color.
+  Paging for when text charts are more than a screenful.
+  Access environment variables.
+  Define macros for your most common operations.
+  Easy to use menu and dialog interface in the Windows version.
+
+--
+
+Astrolog system requirements:
+
+For PC's, 640K of RAM and a reasonably recent version of DOS. A math
+co-processor chip is recommended for best performance but not
+required. Astrolog can take advantage of Ansi text, CGA, EGA, VGA,
+and SVGA graphics but they are not required. The program will run on
+8088 AT and XT systems and higher x86 processors. The DOS version of
+Astrolog may be run from MS Windows in a DOS box.
+
+For compiling the source code for PC's, the Microsoft C compiler
+version C6 or later, or Borland Turbo C/C++ compiler version 3.0 or
+later. Other compilers should work although one will probably have to
+compile out the screen graphics sections.
+
+For the Windows version, at least 2M of RAM and Windows 3.1 or later.
+Astrolog for Windows will run under Windows for Workgroups, Windows
+'95, and Windows NT. For compiling the Windows version, Microsoft
+Visual C version 1.5 or later is recommended, although most any
+Windows compiler should work provided it can compile resource files.
+
+For Unix systems, some C compiler is required since ready to run
+executables aren't available. Astrolog can take advantage of X11
+Windows but they are not required.
+
+Astrolog will compile and work on VMS systems, even with X Windows,
+but this isn't officially tested. A .COM makefile script is included.
+
+On the Macintosh Astrolog will compile and run with every feature
+including some interactive graphics, using for example the Symantec
+C/C++ 7.0 compiler for the Mac. It will run on any reasonably recent
+68K Mac with 750K free, and will run on PowerMac's in emulation mode.
+
+A few third party ports of Astrolog are publicly available. This
+includes a port of Astrolog version 4.00 to OS/2 Presentation Manager
+by David Serls, a port of Astrolog 2.25 to the Macintosh but with
+interactive graphics by Pascal Lamboley, and a port to the Amiga by
+Tobias Ferber.
+
+--
+
+Where to get Astrolog:
+
+Astrolog's homepage at http://www.magitech.com/~cruiser1/astrolog.htm
+which allows downloads using a Web interface of all the Astrolog
+files at the Magitech FTP site below. This site also offers
+information on the program, current bug lists, screen shots, and
+links to related sites.
+
+The anonymous FTP site ftp.magitech.com (or magitech.tcastle.is.net),
+maintained by J.H. Trott. The directory /pub/astrology/astrolog
+contains all executables, documentation, and source code, for DOS,
+Windows, Unix, and the Mac. All ephemeris files are available in the
+subdirectory /pub/astrology/astrolog/ephem.
+
+The anonymous FTP site ftp.coast.net (and its mirrors such as
+oak.oakland.edu). These are SimTel sites where the PC Astrolog files
+may be found in /SimTel/msdos/entertn in the file ast54dos.zip, and
+in /SimTel/win3/entertn in the files ast54win.zip and ast54src.zip.
+
+The BBS "Astro Net-1" at US phone number 414-481-9976, maintained by
+Carl Baewer. This is for PC's only, but has all DOS and Windows
+executables, source, documentation, and ephemeris files. They do want
+one to register first, but that and downloads are free minus any long
+distance charges.
+
+Several past versions of Astrolog have been posted to the Usenet
+newsgroup comp.sources.misc and hence are available at many other FTP
+sites archiving this group. Utilities such as archie can locate these
+sites, such as ftp.uu.net. The latest Astrolog release for which this
+was done is 4.10, in volume 32. (Older versions are in volumes 37,
+30, and 28.) Note that those releases are only in Unix shell archive
+format and have no binary files in them.
+
+Right after a new release, the files for Astrolog may sometimes be
+found on the Usenet newsgroup alt.astrology, while the Unix source
+can sometimes be found on comp.sources.misc if the version in
+question was submitted there, until the articles expire.
+
+Note that the following anonymous FTP sites used to contain astrology
+files but don't anymore: hilbert.maths.utas.edu.au, maintained by
+Michael Bulmer, and ftp.u.washington.edu.
+
+--
+
+Astrolog files:
+
+When accessing sites offering Astrolog, one may encounter various
+files. Here is a list of them and what they contain, so one will know
+which ones to actually download.
+
+README.541 -
+  A summary of Astrolog and what it offers. What you're reading now. A copy of
+  this file is contained in ast54win.zip, ast54dos.zip, ast54mac.hqx, and
+  ast54unx.shr.
+
+as541win.zip -
+  A ready to run MS Windows executable and related files. For most users, this
+  is the only file needed. Pkunzip version 2.04 or later required to unpack.
+
+as541src.zip -
+  The source code. Requires a C compiler to use and pkunzip again to unpack.
+  Not required to run if you already have the executable above.
+
+Helpfile.540 -
+  The complete documentation for all of Astrolog's features. A copy of this
+  file is contained in ast54win.zip, ast54dos.zip, ast54mac.hqx, and
+  ast54unx.shr.
+
+Update.540 -
+  Additions made to version 5.30 over the version before. Only useful if one
+  is familiar with the previous version. A copy of this file is contained in
+  ast54dos.zip and ast54unx.shr.
+
+History.540 -
+  Describes the history and additions made to each version of Astrolog since
+  its beginning. Generally only useful if one is upgrading from several
+  versions ago and wants to be updated on the past few releases.
+
+swe_18.zip -
+  The Swiss Ephemeris files for 1800 - 2400 AD. 
+  Further ephemeris files can be downloaded at http://www.astro.com/swisseph
+pmastro.zip -
+  An older third party port of Astrolog 4.00 to OS/2 Presentation Manager.
+
+--
+
+IMPORTANT NOTICE: The graphics database and chart display routines
+used in this program are Copyright (C) 1991-1996 by Walter D. Pullen
+(Astara@msn.com, http://www.magitech.com/~cruiser1/astrolog.htm).
+Permission is granted to freely use and distribute these routines
+provided one doesn't sell, restrict, or profit from them in any way.
+Modification is allowed provided these notices remain with any
+altered or edited versions of the program.
+
+The main planetary calculation routines used in this program have
+been Copyrighted and the core of this program is basically a
+conversion to C of the routines created by James Neely as listed in
+Michael Erlewine's 'Manual of Computer Programming for Astrologers',
+available from Matrix Software. The copyright gives us permission to
+use the routines for personal use but not to sell them or profit from
+them in any way.
+
+The PostScript code within the core graphics routines are programmed
+and Copyright (C) 1992-1993 by Brian D. Willoughby. Conditions are
+identical to those above.
+
+--
+
+O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O
+*       Walter D. "Cruiser1" Pullen :)       !       Astara@msn.com       *
+O Astrolog 5.40 homepage:  http://www.magitech.com/~cruiser1/astrolog.htm O
+* "Who am I, What am I?  As I am, I am not.  But as we are, I AM.  And to *
+O you my creation, My Perfect Love is your Perfect Freedom. And I will be O
+* with you forever and ever, until the End, and then forever more." - GOD *
+O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O*O

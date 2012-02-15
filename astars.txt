@@ -1,0 +1,32 @@
+
+   Added fixed stars, default order.
+
+ Name                          Brightness   Position (2000.0)
+
+ Alpheratz (alpha Andromedae)      2.15        14Ari19
+ Algenib (gamma Pegasi)            2.87         9Ari09
+ Scedar (Alpha Casssiopeiae)       2.47         7Tau47
+ Mirach (beta Andromedae)          2.37         0Tau24
+ Alrischa (alpha Piscium)          4.33        29Ari23
+ Almac (gamma Andromedae)          2.28        14Tau14
+ Algol (beta Persei)               2.20        26Tau10
+ Mintaka (delta Orionis)           2.48        22Gem22
+ Wasat (delta Geminorum)           3.51        18Can31
+ Acubens (alpha Cancri)            4.27        13Leo39
+ Merak (Beta Ursae Major)          2.44        19Leo26
+ Vindemiatrix (epsilon Virgi)      2.95         9Lib56
+ Mizar (dzeta Ursae Major)         2.40        15Vir41
+ Kochab (beta Ursae Minor)         2.24        13Leo18
+ Zuben Elgenubi (alpha Librae)     2.90        15Sco05
+ Zuben Eschamali (beta Librae)     2.74        19Sco22
+ Gemma (alpha Corona Borealis)     2.31        12Sco18
+ Unuk Alhai (alpha Serpentis)      2.75        22Sco04
+   (Cor Serpentis)
+ Ras Alhague (alpha Ophiuchi)      2.14        22Sag27
+ Albiero (beta Cygni)              3.24         1Aqu15
+ Alderamin (alpha Cephei)          2.60        12Ari48
+ Nashira (gamma Capricorni)        3.80        21Aqu47
+ Skat (delta Aquarii)              3.51         8Pis52
+ Sheat (beta Pegasi)               2.61        29Pis21
+ Markab (alpha Pegasi)             2.57        23Pis29
+

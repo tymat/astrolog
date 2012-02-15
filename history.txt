@@ -1,0 +1,1207 @@
+Astrolog 5.41G - changed version.
+
+Here are described changes I have made in original version of Astrolog.
+Changes follows here in chronological order. Some parts (like planet powers
+calculations) are changed several times, so overview of changes, where
+changes are devided between different areas, gives better picture, what's
+made. To distinguish changed and original versions, changed versions has
+additional letter at end. Last version is 5.41G.
+
+If you want download changed version, you will found there short
+description of files. There are included all sources and ready to use
+executables for DOS and Windows. Original sources and other files are
+available here or on Astrolog Homepage. Original Astrolog 5.41 files are
+downloaded from ftp://www.astro.com/pub/astrolog/. Who want know, what
+exactly is changed, can compare an original sources and current ones, or
+ask me.
+
+Changes made in code:
+
+  ------------------------------------------------------------------------
+*Astrolog 5.30a
+
+Actually here I moved all my previous changes from Astrolog 5.20k to new
+original version 5.30. Most new switches are accessible in Windows version
+through menus.
+
+   * 1. In graphics wheel chart between house (sign) cusps and house
+     numbers (sign icons) are added icons of dispositors.
+
+   * 2. In graphics wheel charts is changed dashenness of aspects lines:
+     now aspect line is solid if orb of real aspect is below 1/4 of maximum
+     allowed orb for current aspect (not fixed 2 degree independent of
+     allowed orbs). In case of narrow orbs about 2 degree original Astrolog
+     shows all aspects with solid lines, changed one only exact aspects
+     with orb below 0.5 degree.
+
+   * 3. In comparison grid charts transit-natal (both text and graphics) is
+     now used different planets restriction set for both input charts,
+     second set is transiting planets restriction set (originally in this
+     case was used for both charts one restriction set from first chart).
+
+   * 4. Added alternative way to restrict stars. Originally if all stars
+     are unrestricted, using of -U switch caused garbage of graphics wheel
+     chart from aspect lines between all stars, also star orbs are fixed
+     2.0 deg.
+
+     In version 5.30a are added switches YU, YUo and YUa.
+     -YUo <value> - SET aspect ORBS for stars (in degrees), default 1.2 deg
+     -YU - switch on/off alternative star restrictions.
+     -YUa <value> - number of aspects taked into account to unrestrict
+     stars.
+     For example:
+     -YUa 1 - all stars not conjunct allowed objects are restricted,
+     -YUa 2 - all stars not conjunct or not opposed allowed objects are
+     restricted etc.
+     Note, that switch -YU itself don't allow any stars, one can use -U
+     switch independent of -YU. In Windows version these settings are
+     available in menu "Chart Settings".
+     Stars needs really very narrow orbs, about 1 deg or narrower, and in
+     version 5.30a orb additions of objects aren't used for aspects with
+     stars, because orb-addition may be in this case greater than orb
+     itself.
+
+     Here you can compare images of natal chart wheels in case of original
+     and changed Astrolog (my own birth chart). Note, that in case of
+     changed Astrolog 5.30a stars are allowed, but displayed are only
+     stars, conjunct with some other allowed object.
+     Difference of aspect lines is more clear in case of comparison chart
+     natal-transit with 2.5 times narrower orbs - original and changed.
+     Note, that in changed case is changed also info-border. (look point 11
+     below).
+
+   * 5. In case of comparison charts and parallel-antiparallel charts all
+     orbs and orb-additions are temporarily decreased and restored after
+     calculating of chart. In case of parallels-antiparallels also powers
+     of aspects are decreased 4 times. Now no need to change aspect orbs in
+     case of comparison or parallel-antiparrelel charts - they are
+     automatically decreased.
+     New switches -YOc <value> and -YOp <value> sets coefficients of
+     temporary decreasing. For example:
+     -YOc 2.0 - set for comparison charts 2 TIMES narrower orbs (default
+     2.5)
+     -YOp 5.0 - set for parallel-antiparallel charts 5 TIMES narrower orbs
+     (default 6.0)
+     To disallow this option enough to set both coefficient to 1.0. In
+     Windows version these switches are available in menu "Aspect
+     Settings".
+
+   * 6. Changed aspect powers calculation. With -a and -a0 switches instead
+     fixed powers of planets given in astrolog.dat file, powers calculated
+     with -j switch are used (really, only positions part). In case of
+     comparison charts for natal charts are used calculated planet powers,
+     for transiting planets respective transiting powers from astrolog.dat,
+     for progressed planets calculated planets powers. If compared two
+     separate charts, calculated different powers for both charts are used.
+     Changed are also power calculations with -T switch, now "-Tn" and "-rt
+     infile now" gives same result.
+
+   * 7. Planets powers calculations are overwritten.
+
+     Changed calculation of position powers powers: Added decreasing of
+     power, if planet is in falling or debilitating sign or house. In
+     aspects powers sum calculations now is used position powers of
+     planets, given in first column, instead fixed from astrolog.dat - now
+     powers of aspects depends from planets positions.
+
+     Astrolog routines gives possibility to include in powers calculations
+     also addition of power, if planets are in reception. Now planet powers
+     are calculated in separate routine used for both -a and -j switches.
+     Taked into account are: ruling, exalting, fall and debilitating in
+     sign and house, also RECEPTION for main planets. As earlier, planet
+     give addition to rulers through sign and house, also house cusps give
+     addition to sign rulers.
+
+     MAIN CHANGE:
+     Astrologers are using two definitions of house ruler:
+     1) classical (natural ruler) - ruler of 1st house is Mars, ruler of
+     2nd house is Venus etc.
+     2) accidental (situative ruler) - ruler of house is planet, which
+     rules sign where is house cusp.
+     Contemporary astrologers uses mostly situative rulers, and natural
+     rulers are used as auxiliary.
+     Original astrolog uses in power calculations only natural rulers.
+     In current version influence through houses are divided to two parts:
+     1) 1/2 is given to natural rulers.
+     2) 1/2 is given to situative rulers.
+
+     To planets total powers are added powers of parallels and
+     antiparallels. Orbs and orb additions are temporarily decreased (look
+     point 6 above) and aspect-powers decreased 4 times (for parallel
+     0.25).
+
+   * 8. Changed -j -X graphics chart: situative rulers hierarchy is added,
+     so now here is three hierarchy: sign dispositor, house natural
+     dispositor and house situative dispositor. Here you can also compare
+     outputs of original and changed versions of Astrolog.
+
+   * 9. In standard text chart added column with planet ruling, exalt etc
+     in house, corresponding to situative house ruler. So after house
+     number in column Rul. is now two letters - first one corresponding
+     natural ruler, second one corresponding situative ruler.
+
+   * 10. Added animation of graphics secondary progressed charts:
+
+          astrolog -i infile.in -pn -X and
+          astrolog -i infile.in -p mm dd yy -X
+
+   * 11. Changed info-border in graphics wheel charts. In case of
+     progression chart are displayed natal data, and also time and Julian
+     day, where chart is progressed. In case of comparison charts are
+     displayed info of both charts and for second chart is marked which
+     chart it is: comparison, transit or progressed. These data changes
+     respectively in case of animation.
+
+   * 12. Fixed bug, where applayng-separating of comparison charts natal -
+     progressed and natal - transit was wrong. Now with -rt and -rp switch
+     natal chart planets velocities are made zero, and -rt (or -rp) with -a
+     switch give correct applay-separate aspects (like -T switch).
+
+   * 13. By analogy with sign's powers calculations added house's powers
+     calculation. (in DOS version switch -j0).
+
+   * 14. In aspect configurations list (in dos version switch -g0) added
+     "Mystic Rectangle". Aspect configuration list is now printed out also
+     with aspect list (switch -a0). "Mystic Rectangle" is described in
+     lesson by L. M. P. McPherson.
+
+   * 15. Original Astrolog has ability to display positions of 177 Arabic
+     Parts. But there aren't displayed aspects to other objects. In version
+     5.30a is added possibility to show only Parts, which haves some
+     aspects with other unrestricted objects, and to show these aspects.
+     Orbs can be set by user.
+     Here are added switches YPo, YPa and YPs.
+
+     -YPo <value> - SET aspect ORBS for Arabic Parts (in degrees), default
+     1.0 deg.
+
+     -YPa <value> - number of aspects taked into account to display Parts.
+
+     For example:
+     -YPa 1 - all Parts not conjunct allowed objects aren't displayed.
+     -YPa 2 - all Parts not conjunct or not opposed allowed objects aren't
+     displayed etc.
+     -YPa 0 - switch off this option, display like original version.
+
+     -YPs <value> - number of aspects displayed for every Parts.
+
+     For example:
+     -YPs 1 - all conjunctions are displayed.
+     -YPs 2 - all conjunctions and oppositions are displayed etc.
+     -YPs 0 - switch off this option, display like original version.
+
+     In Windows version these switches are available in menu "Chart
+     Settings". Note, that these switches are independent, that means, in
+     case of -YPa 0 -YPs 18 Astrolog 5.30a display all aspects of all
+     Arabic Parts.
+     Here you can look example of output with default settings.
+
+   * 16. Added new graphics outputs:
+     The idea was given by Theodore Natsinas the author of "Astro - Chart
+     ", (1992) published by Compupress - Greece. Any comments or opinions
+     about it can be mailed to: tednat@compulink.gr
+
+        o Tension - harmonic chart. On graphics wheel chart instead of
+          standard aspects distribution of tensions/harmonics are
+          displayed. Over the Zodiac for every point is calculated sum of
+          powers of all aspects to this point, oppositions and squares has
+          negative influence, trines and sextiles positive (conjunctions
+          aren't taken into account as neutral). Tension points are placed
+          near center, harmonics near outside of wheel. Result is like some
+          flower, where petals shows harmonic areas, intervals between
+          petals shows tension areas. Ring in center shows neutral level.
+          This chart can be reversed, and petals shows tension areas.
+
+        o Aspectation chart. By analogy, for every point is calculated sum
+          of all allowed aspects to this point, but now all influences are
+          summarized with same sign. Now petals shows more aspected areas
+          in a chart.
+          Both charts can be rescaled.
+
+        o Allowed are also analogous comparison charts. Here are two
+          differences:
+          a) In case of comparison charts orbs are temporarily decreased
+          (look point 5 above), so "flower" can be with very sharp petals,
+          but one can use -YOc switch to smooth picture. -YOc 1.5 seems
+          enough.
+          b) In different comparison charts different planet powers for
+          outer planets ring are used: for comparison (-r0) planet powers
+          are calculated (look point 7 above), for transit planets
+          respective transit influences from astrolog.dat are used. Powers
+          for inner planet ring are calculated like for natal. Here you can
+          look such transit chart, where orbs are temporarily decreased 1.5
+          times (switch -YOc 1.5 used).
+
+        o New switches:
+
+               -Xa 0 - switch off new graphics (also -X made it) -Xa 1 -
+               display tension/harmonic chart, tensions inside.
+               -Xa -1 - same chart, but reversed, tensions outside.
+               -Xa 2 - display aspecting chart.
+               -YXc <value> - rescale both charts, value between 0.2 and
+               4.0, default 1.0.
+
+          In Windows version these switches are available in menu "Chart
+          Settings" in separate box.
+
+        o Text output for such charts is added to standard influence output
+          (-j). After every allowed object is printed four columns. First
+          two columns shows respectively harmonics and tensions in point,
+          where planet is placed. Third column (sum of first two) shows
+          summary tensions/harmonics in point, where planet is placed,
+          fourth one total aspectation of this point. Note, that these
+          aren't planet powers but parameters of respective point on chart.
+          In other words, third column correspond to -Xa and -XA switches,
+          and fourth one correspond to -Xc switch.
+
+   * 17. Corrected calculation of Alcabitius house cusps. Thanks to Per
+     Dahlin (pdahlin@tripnet.se) who sent me definition of Alcabitius house
+     cusps.
+
+   * 18. Changed calculations of house cusps in Polar Zone. In some
+     situations in Polar Zone (named by Per Dahlin "circumpolar
+     situations") pairs ASC - DES must be reverted, because Zodiac is
+     ascending in reverted direction. Discussion in alt.astrology shows,
+     that exist two points of view to flipping also MC -IC:
+
+          1) MC is defined as upper culmination, then MC - IC aren't
+          flipped, but MC is under horizon.
+          2) MC is defined as culmination above horizon and MC - IC are
+          flipped.
+
+     In most graphics wheel charts with reverted ASC, it' s placed to
+     right. Then Zodiac and planets saves his placement.
+
+     Because exists two points of view to flipping of MC in Polar Zone, in
+     this version user can select, flip in circumpolar situation only Asc
+     or both Asc and MC. This option is controlled by switch -YH (or _YH,
+     =YH). Default setting is =YH (that means, flipped are both MC and
+     Asc). If one want flip only Asc, best way is add to astrolog.dat line:
+
+          _YH
+
+     Because use of this switch is very rare, this switch isn't controlled
+     under Windows menus.
+
+   * 19. Added Uranian Proserpina. So Astrolog 5.30a has 9 Uranians instead
+     original 8. Proserpina is Uranian #8, (obj. #40) and last Uranian
+     Poseidon is obj. #41. Remember about corresponding changes in
+     astrolog.dat. All info about Proserpina I have is available here.
+
+   * 20. Added 25 fixed stars, listed here. Because added stars have
+     apparent magnitude greater than 2.0, colors of star printout are
+     changed. Stars brighter than (less than) magnitude 1.0, are red, with
+     magnitude between 1.0 and 2.0 are orange, and stars with magnitudes
+     greater than 2.0 are dark red. Star name "Orion" is changed to Alnilam
+     (epsilon Orionis), because one of added stars Mintaka (delta Orionis)
+     is another star from Orion's belt (see helpfile of Astrolog,
+     description of switch -U)
+
+   * 21. In Windows version increased (2 times) screen buffer, because some
+     new text outputs doesn't go in old one.
+
+   * 22. Added new feature. In original Astrolog user can customize
+     rulership of a planet using switch -YJ. That mean, changed are data,
+     where planet is argument and sign is value, and lot of planets can be
+     marked as rulers of same sign. But this switch don't changes data,
+     where sign is argument, planet is value, and here for every sign is
+     only one planet marked as ruler. Graphics dispositor chart uses just
+     these data and this chart is independent of switch -YJ.
+
+     In version 5.30a is added new switch -Yr, which allow to change these
+     data and set as ruler of sign any planet, even Uranian. As result, on
+     graphics dispositor chart can be more than 10 fixed planets
+     (originally Mercury and Venus rules two signs) but maximum 12, own
+     planet for every sign.
+     Using of switch:
+
+          -Yr <sign> <object>
+
+     Example below changes ruler of Virgo to Proserpina and ruler of Libra
+     to Chiron.
+
+          -Yr 6 40 -Yr 7 11
+
+     Here you can look an example of such chart.
+
+     This switch changes also data, where planet is argument, that mean, no
+     need for additional switch -YJ <object> <sign> <old_value>. Such
+     change of ruler of sign changes also results of planets powers
+     calculations, because changed version of Astrolog uses dispositor data
+     in power calculations.
+
+     Using of this switch is probably very rare, so best way is put it to
+     astrolog.dat file.
+
+   * 23. Changed default color of Venus from green (Air) to yellow (Earth)
+     because Venus is always connected with Taurus (Earth), but often as
+     ruler of Libra is used some other planet (for example Chiron). If one
+     likes more original color, it can be simply restored by adding of one
+     line to astrolog.dat file:
+
+          -YJ 4 7 2
+
+  ------------------------------------------------------------------------
+*Astrolog 5.30b
+
+Mostly cleanup of code, but also added some new things.
+
+   * 24. In Windows version using of parallel-contraparallel aspects can be
+     set very simply. But Transit To Transit and Transit To Natal Hits are
+     calculated for normal aspects independent of setting of Parallel
+     aspect switch. Only effect is changing of aspect names from
+     conjunctions and Oppositions to Parallels and Contraparallels, but
+     used are really normal aspects, also trines, squares etc. In original
+     Astrolog searching of parallel and contraparallel hits is absent at
+     all. Now this omissed part is added and is possible to search also
+     Parallel and ContraParallel aspects like it was possible with normal
+     aspects.
+
+     I don't added any specific switch to DOS version, in DOS version such
+     searches are possible by using of additional switch -ap, which
+     switches to parallel aspects.
+
+     Note, that I don't added also any new interpretation.
+
+   * 25. Overwrited temporary decreasing of orbs in case of parallels and
+     comparison charts which allowed to remove lot of unnecessary code.
+
+   * 26. Fixed my omission in animation of progressed chart, which itself
+     worked, but in cause of transit-transit and transit-natal searches and
+     influences caused changes of chart data (in Windows version after
+     repeat of search, data of first chart was changed).
+
+   * 27. Fixed original Astrolog omission, where in case of -sr switch
+     (equatorial coordinates instead ecliptical) coordinates of house cusps
+     aren't transformed from ecliptics to equator, and planets itself was
+     on equator, but was placed to ecliptical houses.
+
+   * 28. All -Z switch (Horizon) charts must be independent from -sr
+     switch, because image of visible sky relatively to local horizon must
+     be independent of coordinate system we use for planets (equatorial,
+     ecliptical or some other). In original Astrolog all outputs of -Z
+     switches changes in case of additional switch -sr. All routines,
+     connected with -Z switch, transforms first coordinates from ecliptic
+     to equator and then from equator to local horizon coordinates. In case
+     of -sr switch first transform from ecliptic to equator is superfluous,
+     because in case of -sr switch coordinates are already given in
+     equatorial system. In 5.30b this bug is fixed.
+
+   * 29. Added new switch -Ze, where outputs are relatively to equator
+     instead of local horizon. These outputs gives good illustration to
+     parallels- contraparallels. Combinations -Z0e and -Ze0 are legal, also
+     with -X switch. In Windows version added respective control in menu
+     "Obscure Settings".
+
+   * 30. To graphics outputs with -Z -X switches (overview of space
+     relatively to local horizon) are added positions of ecliptics (dark
+     gray dashed line) and space equator (light gray dashed line).
+     Animation of such picture gives good possibility to look to moving of
+     planets and important planes in time and hepls to understand problems
+     with polar MC and Asc. Here is example of normal chart. In case of
+     polar chart is clearly visible, that MC (intersection point of
+     ecliptic and south direction) is under local horizon, also Asc
+     (intersection point of ecliptic and local horizon) is on west from MC.
+
+   * 31. Fixed my bug with switch -Zd (rising and setting) in polar zone,
+     where flipping of MC caused nonexisting hits from planets to MC and
+     IC.
+
+   * 32. Fixed bug in calculation of Gauquelin sectors in polar zone. In
+     this case some planets can not rise and set during a day. Astrolog
+     restricts such planets, but original version don't restores old
+     restriction set when returning to standard wheel.
+
+  ------------------------------------------------------------------------
+*Astrolog 5.30b1
+
+   * 33. Fixed my own bug, where using SouthNode/Lilith with _b switch
+     (don't use ephemeris files) caused in graphics mode error message and
+     exit.
+
+  ------------------------------------------------------------------------
+*Astrolog 5.30c
+
+   * 34. Missing of control over Proserpina in Windows version caused a lot
+     of problems (in Win version). This very serious bug is fixed now.
+
+   * 35. Added two points on the sky - Centre of our Galaxy and Apex of
+     Sun. There are different data, better seems data from "Brockhaus ABC
+     der Astronimie" (Leipzig 1961):
+
+          Centre of Galaxy: 17h 40' , -29 deg
+          Apex of Sun: 18h 04' , +30 deg
+
+     Better data of Centrum of Galaxy gives J. Shklowsky (- 17h 42' 30" -29
+     deg 02', results of radioastronomy). Of cource, all theses dara are
+     corrected to epoch 1900, used by Astrolog.
+
+   * 36. In text mode added support of 8-bit characters in any place (name,
+     place, custom interpretation etc.). In graphics mode Astrolog uses his
+     own fonts, and needs additional work to create at least codepage 850
+     support.
+
+   * 37. Added new interpretation way, where interpretation is read from
+     text files, prepared by user. There are three areas:
+
+        o planets and aspects, where are described meanings of planets in
+          signs and houses and their aspects.
+        o houses, where are described meanings of positions of house cusps,
+          planets in houses etc.
+        o meanings of stars (if these are unrestricted).
+
+     NOTE, that interpretation is read from additional text files, which
+     must be filled by user. Here you can see full description of this
+     feature.
+
+     This interpretation is controlled by switches:
+
+          -Ia - only regrouped info, without interpretation
+          -Ib - full interpretation
+          -Ip - interpretation of planets
+          -Ih - interpretation of houses
+
+     All these switches works also without interpretation files.
+
+  ------------------------------------------------------------------------
+*Astrolog 5.30c1
+
+   * 38. Added 8-bit text support also to graphics mode. Because of
+     structure of original Astrolog (uses his own font) here is compiled in
+     support of codepage 850 (international latin). As I wrote earlyer
+     (look above), in text mode actual codepage is supported.
+
+   * 39. Fixed my bug, where some 8-bit characters in first place of name
+     or postion caused damage of text chart header.
+
+  ------------------------------------------------------------------------
+*Astrolog 5.30c2
+
+   * 40. Fixed bug in my addition to influence (switch -j0) printout. Total
+     aspectation of planets was wrong - was added influence of conjunction
+     of planet with himself.
+
+   * 41. Aspectation output (switch -j0) is changed. Now are six columns:
+     Name of planet, sum of harmonical aspects (trines and sextiles), sum
+     of tension aspects (squares and oppositions), sum of harmonical and
+     tension aspects, where tension aspects are negative, sum of
+     conjuncions, total aspectation of planet.
+
+   * 42. In "flower" graphics output is removed simultaneous influence of
+     opposite house cusps - included are conjunctions and trines to
+     unrestricted cusps, but removed oppositions and sextiles to allowed
+     opposite cusps. That's similar to "smart cusps" option of original
+     Astrolog.
+
+  ------------------------------------------------------------------------
+*Astrolog 5.30d
+
+   * 43. Added alternative interpretation of positions of dispositors in
+     signs and houses. Switches -Ib, -Ip, -Ih are same, than in previous
+     versions. Changes and additions:
+
+     -Ia - added info about positions of situative and natural dispositors
+     in signs and houses
+     -Id - like -Ih, but added interpretations of positions of dispositors
+     in signs and houses
+     -Io - All possible interpretations. Like -Ib, but added
+     interpretations of dispositors in signs and houses.
+
+     Interpretations of positions of dispositors in houses and signs you
+     can find in book "The Astrological Tarot" by Georges Mushery,
+     published in 1994 by Senate, an imprint of Studio Editions Ltd,
+     London.
+
+     NOTE, that interpretation is read from additional text files, which
+     must be filled by user. Here you can see full description of this
+     feature.
+
+  ------------------------------------------------------------------------
+*Astrolog 5.30e
+
+   * 44. Last changes in "alternative interpretation" wasn't reflected in
+     Windows version's menus. This omission is fixed.
+
+   * 45. Original Astrolog 5.30 sources (and also older changed versions)
+     can't be compiled in text mode without corrections in sources. In
+     version 5.30e it's fixed.
+
+   * 46. Changed graphich output "Local Horizon" (switches -X -Z). On
+     ecliptics curve (added in version 5.30b) are marked beginnig points of
+     zodiacal signs. So finally there are local horizon (horizontal
+     stright), space equator (light gray dashed line) and ecliptics (dark
+     gray dashed line). Point 0Ari is marked as red, 0Lib as green and all
+     other beginning points of zodiacal sings as white points on ecliptics
+     curve.
+     Animation of this graphics chart is good illustration to problems with
+     Houses in polar zone.
+
+  ------------------------------------------------------------------------
+*Astrolog 5.30f
+
+   * 47. To graphics wheel and biwheel charts added new feature. Original
+     Astrolog (and all previous changed versions) shows all exact (or
+     nearly exact) aspects as solid lines, undependently of real power of
+     aspect. That means, exact aspect between two very weak planet is
+     solid, and not exact (but much more powerful) aspect between two
+     important planet is dashed.
+
+     Astrolog 5.30f allows to change dashennes of aspect lines relatively
+     to calculated power, not exactness. That means, solid are all aspects
+     with power more than 8.0 (default setting), and weak aspects are
+     dached even they are exact. New feature is realized in "bonus mode"
+     (-Xi switch or pressing the i key in a window). That allows change
+     between "aspects by exactness" and "aspects by power" by the fly. In
+     some cases changes in chart are great, in some cases small. To be
+     sure, which mode is in using, to info border just below "Astrolog
+     5.30f" in bonus mode are now words "Bonus mode". Originally in bonus
+     mode are shown only planets without aspects.
+
+     One can change minimal aspect power to be solid by new switch -YPp.
+
+          -YPp <value>
+
+     Default value is 8.0. In Windows version value can be changed in menu
+     "Obscure settings".
+
+  ------------------------------------------------------------------------
+*Astrolog 5.30g
+
+   * 48. To info-border of graphics wheel charts (single and comparison) is
+     added some info of aspects in (or between) chart(s). There are
+     outputs:
+
+          Harm = sum of harmonical aspects (trines and sextiles),
+          Tens = sum of tension aspects (squares and oppositions),
+          Summ = sum of harmonical and tension aspects, where tension
+          aspects are negative,
+          Conj = sum of conjuncions,
+          Total = total aspectation of planet.
+
+     This option is controlled by new switch -XI. If Astrolog is already
+     running graphichs wheel chart, this option can be toggled on/off by
+     pressing "I".
+
+     In case of single chart that's just same info, whish is printed out in
+     last line in -j0 switch text output. In case of comparison charts
+     there are summarized aspects between two charts.
+
+   * in aspectation calculations with -j0 switch. There was always used orb
+     addition, so all numbers was greater (until 7-8%).
+
+  ------------------------------------------------------------------------
+*Astrolog 5.30g1
+
+   * 50. Fixed my bug, caused by changes in two previous versions. In case
+     of graphichs composite chart graphichs wheel was correct, but planets
+     positions in infoborder was wrong: there was postitions from first
+     chart, not from composite chart. This bug is fixed now.
+
+   * 51. Position of Centre of Galaxy is corrected. Seems, that I made
+     there unnecessary transformation of epoch, which caused difference
+     about 1 degree. New position for now (26Sag08) matches better with
+     other sources than old one (25Sag22).
+
+  ------------------------------------------------------------------------
+*Astrolog 5.31g
+
+Alois Treindl modified Astrolog 5.30 and named new version 5.31. It
+contains the new Swiss Ephemeris instead of the older Placalc ephemeris.
+The responsibility for this modification is with Alois Treindl. Original
+Astrolog 5.31 with all related files is available at
+ftp://www.astro.com/pub/astrolog/
+
+Instead of older Placalc ephemeris new ones are used: sepl_xx.se1 for
+planets, seas_xx.se1 for astreoids and semo_xx.se1 for Moon. Every set of
+files covers 600 years. Windows version has builtin planetary and Moon
+ephemeris, which uses another algorithm and covers 3000 BC - 3000 AD.
+Though, external ephemeris are more precise and quick. Pkziped set of
+ephemeris files sweph_18.zip contains files for 1800 AD - 2400 AD.
+
+   * 52. Just same modification is made with Astrolog 5.30g1, new version
+     name is 5.31g. This version hasn't any additional modifications from
+     my side.
+
+  ------------------------------------------------------------------------
+*Astrolog 5.41a
+
+Astrolog 5.40 and then 5.41 with Swiss Ephemeris was released.
+
+   * 53. Here I moved all my previous changes from Astrolog 5.31g to new
+     original version 5.41. Because Swiss Ephemeris are more precise and
+     quick than older Placalc ephemeris, I moved to 5.41 and don't will
+     change versions with Placalc anymore. So Astrolog 5.40a doesn't exist.
+
+  ------------------------------------------------------------------------
+*Astrolog 5.41B
+
+   * 54. Added alternative interpretation of TRANSIT-NATAL comparison
+     charts, analogious to earlyer alternative interpretation of natal
+     charts. For details see file interalt.txt. Sample interpretation files
+     with descriptions are in file interalt.zip.
+
+   * 55. Added three new switches (YSa, YSj, YSs) for use in astrolog.dat
+     file, which allows to change some default settings:
+
+          =YSa - sets aspects in listings by default as
+          applying-separating.
+          =YSj - influence text chart shows by default also house's
+          influence.
+          =YSs - aspect listing shows by default also aspect summary.
+
+   * 56. To most text outputs added headers, where are described type of
+     chart, in case of comparison charts also data of both charts. In case
+     of multiply charts header is printed only once.
+
+   * 57. To Aspects Configurations list added also "Kite" (described for
+     example in lesson about aspects by L. M. C. McPherson.
+
+   * 58. Fixed original Astrolog bug, appeared between versions 5.30 and
+     5.40 - positions of planets and Houses in Gauquelin graphics chart
+     infoborder was wrong.
+
+   * 59. To Windows version "Help" menu added new item - Open World Atlas,
+     which opens WEB browser and connects to infoserver
+     http://www.astro.ch/atlas/. (I use it often to find coordinates and
+     timezones of different towns). URL is placed into file watlas.url,
+     added to package.
+
+   * 60. Fixed original Astrolog omission - Windows version "Help" menu
+     looks for necessary files only in local directory. Now these files are
+     searched through all directories, connected with astrolog (see
+     helpfile for details of setting of environment variables) with
+     searching order:
+
+        o 1) Local directory
+        o 2) Environment directories, set in autoexec.bat, one of them
+          version specific (names of directories as examples, names of
+          environment variables must be strict and in upper-case:
+             + a) set ASTR5.41B=C:\aaaaa\541
+             + b) set ASTROLOG=d:\abbbb
+             + c) set ASTR=H:\miscfile
+        o 3) Default directory, compiled in: C:\ASTROLOG
+
+     If Astrolog doesn't find file, it doesn't attempt to start wordpad or
+     WEB browser but prints only warning, that it can't find file.
+
+   * 61. Improved configuration file astrolog.dat, saved by Windows version
+     - all switches of changed versions are in separate section:
+
+          ; SWITCHES, NOT SUPPORTED BY ORIGINAL ASTROLOG
+
+     That simplifies use of the same astrolog.dat file for both changed and
+     original versions - for original version simply comment out all
+     switches, described in this section.
+
+   * 62. Fixed bug in stars restriction window, appeared in 5.41a (star
+     Sheat was always shown as unrestricted).
+
+  ------------------------------------------------------------------------
+*Astrolog 5.41C
+
+All changes in last version are connected with fixed stars. Main change -
+also fixed stars are now calculated by Swiss Ephemeris routines.
+
+   * 63. Stars calculations moved to Swiss Ephemeris, which improved
+     precision of calculations. Additional file fixstars.ast is necessary.
+     That's specially modified file fixstars.cat from SWEPH, which contains
+     data of about 800 fixed stars (actually fixstars.ast is last version
+     of fixstars.cat, where data of stars, used by Astrolog, are copied to
+     first 74 lines). There are traditional name of star (like Aldebaran),
+     canonical name (like alTau), ephemeris and magnitude. Without this
+     file all stars calculations are made as in previous versions.
+
+   * 64. If fixstars.ast file is used, name and maginitude from file
+     overwrites these internal data of Astrolog and are printed out in
+     listings etc. In some printouts are used also canonical names of
+     stars.
+
+   * 65. Stars are searched by line (star) number in fixstars.ast file, so
+     copying of lines in astrolog.ast to first 74 positions gives
+     possibilty to use all stars from this catalogue (in blocks by 74
+     stars, allowed by changed Astrolog).
+
+        o Note, that most stars in catalogue hasn't traditional name but
+          only canonical name. If you want to use such a stars, I suggest
+          to write canonical name also into traditional name field (like
+          i'ts made with zeRet in fixstars.ast). In other case you will see
+          blank starname(s) in all listings and if such stars are more than
+          one, it's difficult to distinguish them (in some printouts they
+          can be distinguished by canonical name).
+
+   * 66. Changed stars restrictions menu in Windows version. Internal names
+     of stars, used by Astrolog, are overwritten by names from fixstars.ast
+     file. Canonical names aren't used there, so if you will use stars with
+     blank traditional name filed, it will be blank also in menu.
+
+        o Note, that when Astrolog starts first time with disallowed fixed
+          stars, internal stars names are used (because fixstars.ast file
+          isn't used in this case). If you use modified fixstars.ast file,
+          you have to cast once any chart with all fixed stars
+          unrestricted. Then all stars names will be overwritten and with
+          next charts you can see there new names from fixstars.ast and use
+          them for restriction.
+
+        o In case of alternative stars restriciton you don't need stars
+          restriction menu, stars are restricted and unrestricted
+          automagically. But after first chart with fixed stars there will
+          be names from fixstars.ast.
+
+   * 67. Changed some text outputs:
+
+        o In chart listing object name field is increased to 10 characters,
+          (important for stars!), for stars added canonical names instead
+          of blank field for velocity.
+
+        o In Local Horizon and Prime Vertical text charts added recpective
+          line to header, object names increased to 7 characters.
+
+   * 68. Stars colours can be customized. New switches:
+
+          -YUb1 <value> for stars with magnitude below 1.0
+          -YUb2 <value> for stars with magnitude between 1.0 and 2.0
+          -YUb3 <value> for stars with magnitude over 2.0
+
+          Colors: ( <value> )
+
+          0 - black, 1 - maroon, 2 - dk. green, 3 - orange, 4 - dk. blue, 5
+          - purple, 6 - dk. cyan, 7 - lt. gray, 8 - dk. gray, 9 - red, 10 -
+          green, 11 - yellow, 12 - blue, 13 - magenta, 14 - cyan, 15 -
+          white.
+
+     "Save settings" in Windows version saves also these stars colours
+     settings.
+
+   * 69. To Windows version "Help" menu added new item - Open Fixed Stars,
+     which opens WEB browser and connects to infoserver
+     http://www.winshop.com.au/annew/. URL is placed into file stars.url,
+     added to package.
+
+  ------------------------------------------------------------------------
+*Astrolog 5.41D
+
+   * 70. Fixed bug in Windows and Unix/Linux versions 5.41C, where use of
+     alternative interpretation files causes crach of program.
+
+   * 71. Calculations of Uranianas are also moved from Matrix routines to
+     Swiss Ephemeris. No need in additional ephemeris files, these
+     ephemeris are in standard SWEPH package. Note, that Proserpina was
+     added earlyer by myself and is calculated as previously by Matrix
+     routines. So Proserpina is moved to last place and is now Uranian #9
+     (not #8 as earlyer).
+
+   * 72. Improved fixed stars ephemeris file fixstars.ast:
+        o In previous file all omegas and omicrons had same canonical name
+          - om. Now all omegas are clearly ome, all omicrons omi. That
+          caused small changes in printout formats where canonical names of
+          fixed stars are used.
+        o Stars are reordered by constellations, which helps seek of
+          necessary stars.
+        o Added names to lot of stars.
+        o Added some stars, used in astrology, but not listed earlyer. Now
+          file contains data of over 1000 fixed stars.
+
+   * 73. Added stars ordering by Prime Vertical. In Windows version it can
+     be choosen in Chart settings, in command line versions is added new
+     switch -Up.
+
+   * 74. Added new graphics output - local horizon chart in Prime Vertical
+     coordinates. In original Astrolog -Z0 switch has different meanings in
+     text and graphics modes. In text mode it gets output with prime
+     vertical coordinates, in graphics mode it's local horizon output (same
+     with -Z), but with other point of view, named in Windows version
+     "Horizon Chart Displays With Polar Center" (choose it in "Chart" ->
+     "Chart Settings", then "Local Horizon" chart and then Graphics).
+
+        o Original Astrolog output. You lie faced to zehith, head to Nord.
+          Zenith is just in centre of screen, upper half is nordic
+          hemisphere, internal circle represents local horizon, external
+          dashed circle represents "stretched" opposite point Nadir.
+          Planets, which are under horizon, are outside internal circle.
+          Original Astrolog covered sky up to -90 deg in corners of picture
+          and up tp -37 deg latitude in N, E, S and W directions (so area
+          inside 53 deg to nadir in these directions is invisible). I
+          rescaled picture, so now in these directions is invisible only
+          area inside 9 degree from Nadir (visible is part between +90 and
+          -81 degree latitude), and in corners is visible "stretched"
+          Nadir.
+
+        o To switch to added Prime Vertical mode, hit i (bonus mode). This
+          system is exactly perpendicular to previous. You are faced to
+          South - horizontal line in centre of screen is local horizon,
+          just in centre of screen is southern point of horizon. Part
+          inside of internal cicrcle is just in front of you, outside of
+          cicrcle behind you. So Zenith is just upper crossing point of
+          vertical line and circle, nadir lower one. This picture is scaled
+          just as previous one, dached outern circle is "stretched" northen
+          point on local horizon.
+
+  ------------------------------------------------------------------------
+*Astrolog 5.41E
+
+   * 75. Added restriction set for progressed charts (for natal-progressed
+     comparison charts only!). To set restrictions for progressed charts a
+     new switch -YRP is used in the same way as restrictions and transit
+     restricitons are set by -YR and -YRT switches (see helpfile and
+     astrolog.dat).
+
+   * 76. Modified power calculations. There are significant changes:
+
+        o 1) Positional power calculations revised and cleaned. This caused
+          changes in some settings in the astrolog.dat file (see
+          power.txt). Initial powers are revised. Of course, one can play
+          with these values to find his own preferred power levels.
+        o 2) User can set powers of parallels relative to conjunctions (new
+          switch -YOP <value>, default 0.25). In earlier versions this
+          default value was fixed.
+        o 3) In all planet power calculations only unrestricted aspects are
+          used (earlier versions used in some outputs just the 5 main
+          aspects).
+
+   * 77. Small changes in headers for comparison text charts - for synastry
+     and dual charts the name from the second chart is added.
+
+   * 78. All older versions of Astrolog showed parallel/contraparallel
+     aspects as separating. To find out whether a parallel/contraparallel
+     is applying, it's necessary to know speeds in latitude but Astrolog
+     did not use them, and could not calculate these aspects at all.
+
+     Fortunately the Swiss Ephemeris calculates speeds in latitude, so in
+     version 5.41E real appplying/separating parallel/contraparallel
+     aspects are calculated. Note that it's necessary to use the Swiss
+     Ephemeris to calculate them. With _b switch (don't use ephemeris
+     files) Matrix routines are used and speeds in latitude aren't
+     calculated, and these aspects won't be calculated in that case - as in
+     original version, aspects are then always shown as separating.
+
+   * 79. Fixed a bug in the Windows version, where restrictions of Alnilam
+     and Elnath were garbled. Restriction of Alnilam caused the restriction
+     of Elnath and vice-versa.
+
+   * 80. Fixed a bug in the Windows version, where it wasn't possible to
+     use the "Null" house system.
+
+   * 81. Aspects between fixed stars are removed from all outputs.
+
+  ------------------------------------------------------------------------
+*Astrolog 5.41F
+
+   * 82. Fixed original astrolog bug. POF (in main objects) was wrong in
+     case of equatorial coordinates (but in arabic parts list it was
+     correct).
+
+   * 83. Colors of all main objects can be changed from default. New switch
+     added:
+
+          -Yq <object> <color>
+
+          Just by standard Astrolog rules there are object and color
+          numbers or names (see helpfile.540), so all examples below will
+          give you blue Mars :)
+
+               -Yq 5 12
+               -Yq 5 blue
+               -Yq mars 12
+               -Yq mars blue
+
+   * 84. Alternative stars restriction works now also with parallels. So if
+     (with active "alternative restriction") you switch to parallels (View
+     -> Parallel Aspects), unrestricted will be stars which parallels some
+     object (if you increase apect numbers for alternative restriction,
+     there will be unrestricted stars with contraparallels too).
+
+   * 85. To switch to parallels in command line (DOS or Unix) version (in
+     Win version it's simple), there is new switch -YSP. It's useful also
+     in some other cases (like in combination with -d switch to see
+     parallel-contraparallel events during day/month etc).
+
+   * 86. Added automagic restriction of stars also by prime vertical. There
+     are new switches:
+
+          -YUP <value>
+
+          where value:
+               0 - switch this off
+               1 - unrestricted are stars, which conjuncts some object
+               (except cusps, POF etc).
+               2 - unrestricted are stars with PV = 0, 45, 90, etc degrees
+               3 - unrestricted are both above
+
+          -YUO1 <orb1>
+          -YUO2 <orb2>
+
+          These switches are obvious, they sets orbs for automagic
+          restrictions above (for YUP 1 and YUP 2 respectively), default
+          orbs are 1.166666667 deg (1deg10').
+          When you use -YUP <value>, don't worry about switching on/off
+          "alternative stars restriction", it will be automatically back to
+          previous value when you get -YUP 0.
+          I dindn't add anyhing to Windows version menus, all can be
+          comfortably done by macros like
+          {M0 1 "_v -Z0 -U -Up -YUP 1"}
+          DOS version supports all new switches above.
+
+   * 87. Added alternative date format for some outputs (like events search
+     with -d switch), where abbreviature of month is printed instead of
+     number of month (i.e. "12 Jan 2000" instead of original "12- 1-2000").
+     That can be switched by new switch -Yn. Default setting is Astrolog's
+     original one (numeric month), =Yn switches to abbreviatures.
+
+   * 88. Names and abbreviatures of aspects can be customized. New
+     switches:
+
+          -An <n> <name>
+          -AA <n> <abbreviature>
+
+          There n is number of aspect, name and abbreviature are new name
+          and abbreviature for this aspect. Best way to use is put them to
+          astrolog.dat file.
+
+          NB! <abbreviature> MUST be three characters. Astrolog doesn't
+          check lenght of new abbreviature, and in other case most outputs
+          where aspect abbreviatures are used, will be distorted.
+
+   * 89. Astrolog computes position of Lilith (Dark Moon) using external
+     ephemeris. When -b setting is off, Astrolog will display the position
+     of the South Node instead (see helpfile.540, description of -HO
+     switch). Position of Lilith is calculated by Swiss Ephemeris only if
+     central planet is Earth, and in version 5.41F if central planet isn't
+     Earth, Lilit is analogiously replaced by South Node even if -b switch
+     is on.
+
+   * 90. Original Astrolog doesn't replace central object in comparison
+     grid charts. In version 5.41F changes of central planet are reflected
+     also there.
+
+  ------------------------------------------------------------------------
+*Last version Astrolog 5.41G
+
+   * 91. Fixed original Astrolog bug, where Local Horizon data (and also
+     Prime Vertical) were off by up to several arc-minutes.
+
+   * 92. Fixed original Astrolog bug (Windows version), where "Time / Space
+     Midpoint" chart is correct, but it was not possible to return back to
+     "No relationship chart" - there was still previous "midpoint" chart.
+
+   * 93. In "Rising and Setting" chart fixed bug, where "Print Nearest
+     Second" worked unproperly - seconds weren't shown for risings and
+     settings.
+
+     In this context more correct termin instead of "zenith" and "nadir" is
+     astronomical termin "culmination" that means transit over meridian.
+     There are two culminations: "upper culmination" when planet has
+     highest position and "lower culmination" when planet has lowest
+     position. So in the chart termins "zeniths" and "nadirs" are replaced
+     by "culm.(up)" and "culm.(lo)" respectively.
+
+   * 94.Uncorrect object name "Nadir" has been replaced by corret "IC".
+     Nadir has different meaning than IC, Nadir is the point on the sky
+     opposite to Zenith.
+
+   * 95. Slightly improved Astrolog's behaviour in case of progressed and
+     relationship charts. Earlyer Windows versions allowed to do
+     progression and then do some relationship chart like Natal-Progressed.
+     Or vice versa, when looking say Natal-Progressed chart switch also
+     Progression "on". That all confused Astrolog and results were often
+     unpredictable.
+
+     Now any use of relationship charts (in menu "Info") switches off "Do
+     Progression" (in "Chart" => "Progressions"). And vice versa, switching
+     progression on (in "Chart" => "Progression") switches off any
+     comparison. As result Astrolog is displaying just what it has to
+     dasplay, no confusion.
+
+   * 96. Fixed orignal astrolog bug (appeared only in Windows version).
+     When natal chart was opened from file with saved planets positions
+     (not birth data), there only first output was correct, all next charts
+     (as aspect list, transit searches, all comparison charts etc) had
+     wrong planets positions.
+
+     NB! Use such input files carefully! They are treated by astrolog as
+     files "with no time and space", so a lot of chart types can't be used
+     with them. An examples are all progression charts, because they needs
+     birth-chart time to calculate progressions.
+
+   * 97. Fixed bug of changed versions, where in case of use of data with
+     saved planet positions (just as above), data-border of graphics charts
+     dilsplayed info "no time or space" twice.
+
+   * Time and location have new format - with seconds, both for chart's
+     data inputs and outputs. Only outputs with old data format are events
+     searching outputs, because with reasonably low division value they
+     anyway can be off by a few minutes, so seconds seems unnecessary
+     there.
+
+          "Rising and setting" chart is only exception among searching
+          charts that shows time with seconds. Even with default setting d:
+          48 times are off by only a few seconds, and it is quick enough to
+          show precise (by seconds) times with d: 96 in reasonably short
+          time. Note, that values of azimuth angles in rising/setting
+          moment are extremely sensitive of time changes (very small change
+          of time causes big change in azimuth) and can be off by a few
+          seconds. To improve azimuth precision one has to increase
+          division value up to hundreds.
+
+     All input files with old time/location format can be used, but all
+     outputs are saved only in new time/location format.
+
+   * 98. Calculations precision improved - time-dependent obliquity of
+     ecliptic is used instead of fixed value.
+
+   * Added new switsh to change local horizon text output from default ENWS
+     to NESW. One has just to add line
+
+          =YZ
+
+     to astrolog.dat file and it will be deafult setting.
+
+   * 99. Slightly changed Prime Vertical text chart output: Altitude and
+     Azimuth in header have been replaced by Amplitude and Prm-Vrt. One can
+     see this chart by choosing "Local Horizon" and setting "Horizon Chart
+     with Polar Center / Prime Vert. (text)" in "Chart settings". Note,
+     that this switch has different meanings for text and graphics charts:
+     in text mode it switches between Local Horizon <=> Prime Vertical
+     outputs, in graphics it switches between "normal wiew" and "view vith
+     Polar Center". However, one can switch also between Polar Center and
+     Pime Vert. also in graphics by hitting 'i' on the keyboard (switch to
+     bonus mode).
+
+   * 100. Changed calculations of Solar Arc. Original Astrolog calculates
+     there actually directions, where all planets and house cusps positions
+     are moved forward to an amount equal in degrees to the number of years
+     that have passed between the specified date and the chart in question.
+     Because real (even mean or average) motion of Sun isn't 1 degree per
+     day, resulting Solar Arc Sun position doesn't match with secondary
+     progressed Sun position (but they must match).
+
+     To correct this situation, there has been added another calculation of
+     Solar Arc - first secondary progressed Sun's position is determined
+     and then all chart components are moved accordlingly.
+
+     To avoid misunderstanding, existing Solar Acr calculations remains,
+     but have now corrected name "Degree Per Day/Month", as earlyer one can
+     change amount of degrees per year (more strictly, amount of days for 1
+     degree direction. See description of -p0 and -pd switches in
+     helpfile.540). Added calculation is named "Solar Arc Directions" and
+     there Sun's position follows secondary progressed Sun positions, all
+     other point in chart are moved accordlingly.
+
+     Existing switches -p0, -p0n remain as previously. For new correct
+     "Solar Arc Directions" calculations new switches -p1 and -p1n are
+     used. In Windows version all can be done through menus: "Chart" =>
+     "Progressions..."
+
+   * 101. Slightly changed chraphics charts' infoborder and text charts'
+     headers - secondary progressed charts are still named as "progressed",
+     Solar Arc and "Degree per Year/Mont" are marked as "directed" with
+     name of direction.
+
+   * Graphics chart's infoborder has additional information: Obliquity of
+     ecliptic, Sidereal time, Delta T (in seconds) and in case of sidereal
+     chart Ayanamsha (sidereal offest).
+
+     Note, that Ayanamsha has negative value and dafaults to Fagan Bradley.
+     Ayanamsha control in "Calculation Settings" has a dropdown to allow
+     quick selection of some common systems of sidereal astrology. The
+     values are additions to default value and they are 0.0 for Fagan
+     Bradley, 0.883333 (or 0 degrees 53') for N.C. Lahiri, 0.983333 (or 0
+     degrees 59') for Krishnamurti, and 2.333333 (or 2 degrees 20') for
+     B.V. Raman. On the screen has shown resulting value.
+
+   * 102. Date/time and Julian Day in the graphics charts' infoboredr has
+     been colored:
+
+          1. First (or single) data/time is always bright white.
+
+          2. Second date/time is always yellow.
+
+          3. JD (which is actually also time/date) has color of
+          corresponding date/time above (as yellow in case of transit
+          comparison or direction charts). If JD doesn't correspond to
+          neither date/time above (as in case of progressions where JD
+          corresponds to date/time of planets' positions on the screen),
+          color is green. Note, that in case of Synastry and Comparison
+          charts JD will be yellow, becsuse it corresponds to second
+          date/time above (data of second chart).
+
+   * 103. Windows version controls of progressed charts have been polished.
+     They looks more clear now. As default 365.2422 (tropical) year has
+     used.
+
+     In "Degree per Days" dropdown are also available:
+
+          365.25636 (sidereal year)
+          27.321582 (tropical month)
+          27.321661 (sidereal month)
+          29.530588 (synodic month)
+
+     Other more exotic (like Draconic) years/months aren't included.
+
+   * 104. Astrolog computes position of Lilith (Dark Moon) using external
+     ephemeris. When ephemeris are set off, Astrolog will display the
+     position of the South Node instead (see helpfile.540, description of
+     -HO switch). For users, who wants to use South Node always, there has
+     been added new switch =YN which forces Astrolog to do it. This switch
+     can be entered through "Edit" => "Enter Command Line" (Windows
+     version) or simply added to astrolog.dat file to make this behaviour
+     default.
+
+   * 105. By default Astrolog calculates mean Lilith. For users who wants
+     to use osculting position of Lilith, new switch -YL has been added. As
+     above, this switch can be added to astrolog.dat file, which makes such
+     behaviour default.
+
+   * 106. Dispositors glyphs on the graphics wheels can be switched on/off
+     using switch -YD. It can be added to astrolg.dat file: =YD (on) or
+     _YD (off), default "on".
+
+  ------------------------------------------------------------------------
+
+Apr. 28th 2002
+
+Valentin Abramov
+
+  ------------------------------------------------------------------------
+
+/*
+** Astrolog (Version 5.41)
+**
+** Code changed by Valentin Abramov
+** Version 5.41G
+** Last code change made 26th Apr. 2002
+**
+** IMPORTANT NOTICE: The graphics database and chart display routines
+** used in this program are Copyright (C) 1991-1998 by Walter D. Pullen
+** (Astara@msn.com, http://www.magitech.com/~cruiser1/astrolog.htm).
+** Permission is granted to freely use and distribute these routines
+** provided one doesn't sell, restrict, or profit from them in any way.
+** Modification is allowed provided these notices remain with any
+** altered or edited versions of the program.
+**
+** The main planetary calculation routines used in this program have
+** been Copyrighted and the core of this program is basically a
+** conversion to C of the routines created by James Neely as listed in
+** Michael Erlewine's 'Manual of Computer Programming for Astrologers',
+** available from Matrix Software. The copyright gives us permission to
+** use the routines for personal use but not to sell them or profit from
+** them in any way.
+**
+** The PostScript code within the core graphics routines are programmed
+** and Copyright (C) 1992-1993 by Brian D. Willoughby
+** (brianw@sounds.wa.com). Conditions are identical to those above.
+**
+** The extended accurate ephemeris databases and formulas are from the
+** calculation routines in the library SWISS EPHEMERIS and are programmed and
+** copyright 1998 by Astrodienst AG.
+** The use of that source code is subject to
+** the Swiss Ephemeris Public License, available at
+** http://www.astro.ch/swisseph. This copyright notice must not be
+** changed or removed by any user of this program.
+**
+** Initial programming 8/28,30, 9/10,13,16,20,23, 10/3,6,7, 11/7,10,21/1991.
+** X Window graphics initially programmed 10/23-29/1991.
+** PostScript graphics initially programmed 11/29-30/1992.
+** Last code change made 12/20/1998.
+** Modifications from version 5.40 to 5.41 are by Alois Treindl.
+*/
+

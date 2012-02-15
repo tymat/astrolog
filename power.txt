@@ -1,0 +1,201 @@
+Power calculations in this versions are generally the same as those in the 
+original Astrolog. The changes are explained in this text.  Additions are 
+marked *** . Most coefficients are slightly different from the original.
+
+Every object and house are given their initial power in the astrolog.dat file.
+
+for objects  rObjInf[i]
+for objects ruling in sign rObjInf[rules], the same value for all objects,
+for objects exalted in sign rObjInf[exalt], the same value for all objects.
+for houses rHouseInf[i]
+for objects ruling in house rHouseInf[rules], the same value for all objects.
+for objects exalt in house rHouseInf[exalt], the same for all all objects.
+
+
+POWERS OF OBJECTS:
+
+1) _First_, for each object, find its power based on its placement alone
+(positional power).  This is also used in aspect power calculations (instead
+of fixed values from original Astrolog).
+
+ppower1[i] += rObjInf[i];            /* Influence of planet itself. */
+ppower1[i] += rHouseInf[inhouse[i]]; /* Influence of house it's in. */
+
+Planets ruling, exalted, etc. in sign/house gain additions.  Additions from
+houses are divided into two parts - by natural rulership and situational
+rulership. 
+
+In a sign:
+           += rObjInf[rules]     /* rules */
+           += rObjInf[exalt]     /* exalted */
+           -= rObjInf[i]/3.0     /* falls */                   ***
+           -= rObjInf[i]/4.0     /* debilitated */             ***
+
+In house (natural):
+           += rHouseInf[rules]/2.0 /* rules */
+           += rHouseInf[exalt]/2.0 /* exalt */
+           -= rObjInf[i]/6.0       /* falls */                 ***
+           -= rObjInf[i]/8.0       /* debilitated */           ***
+
+In house (situative):
+           += rHouseInf[rules]/2.0 /* rules */                 ***
+           += rHouseInf[exalt]/2.0 /* exalt */                 ***
+           -= rObjInf[i]/6.0       /* falls */                 ***
+           -= rObjInf[i]/8.0       /* debilitated */           ***
+
+The ruler [j] of a sign, where a planet [i] is found, gains an addition.
+For ruling planets we take into account ruling level (see influence graphics
+output). Planets in reception have the highest level (same as planets in their
+own signs), so they automatically have more power.
+
+Main (ruling) planets:
+
+ppower1[j] += rObjInf[i]/(5.0*sqrt(Level[j]);  /* look for level */   ***
+
+Other objects (as rulers they have low initial power, so these additions are
+small too):
+
+ppower1[j] += rObjInf[i]/5.0;
+
+
+Analogous additions are given to rulers of signs, where an object is. But here
+additions are divided - 1/2 to the natural ruler, and 1/2 to the situational 
+ruler.
+
+Natural Ruler:
+
+Main planets:
+
+ppower1[j] += rObjInf[i]/(10.0*sqrt(Level[j])   /* look for level */  ***
+
+Other objects:
+
+ppower1[j] += rObjInf[i]/10.0;                                    ***
+
+
+Exactly the same for Situational Ruler:
+
+Main planets:
+
+ppower1[j] += rObjInf[i]/(10.0*sqrt(Level[j])  /* look for level */   ***
+
+Other objects:
+
+ppower1[j] += rObjInf[i]/10.0;                                    ***
+
+
+House cusps give an addition to sign rulers (cusps here are objects!)
+
+Main planets:         += rHouseInf[i]/2.0
+
+Now, when all position powers are calculated, we give an addition to house
+cusps (as objects), if there is something in that house.
+
+House cusps:          += ppower1[i]/10.0                          ***
+
+
+3) _Second_, for each object, find its power based on aspects it makes.
+This version starts with the power of aspects rAspInf[k]; also orbs for
+aspects, and objects can have orb additions or limitations.
+
+So, if an object [j] has an aspect [k] with object [i], to [j] is given 
+additional aspect power:
+
+power2[j] += rAspInf[k]*(sqrt)(power1[i]*power1[j])*0.5*         ***
+          (1.0-RAbs((real)l)/60.0/GetOrb(i,j,k));
+
+That means if an aspect is exact its power is maximal, and decreases linearly
+to zero, when the real orb exceeds the given orb for the current aspect. 
+Differences with original Astrolog:
+1. Instead of planet power fixed in rObjInf[i], position powers are used, 
+   as calculated previously.  So more powerful planets (by position) have more
+   powerful aspects.
+2. Instead of arithmatic mean--(power[i]+power[j])/2.0, the geometrical mean--
+   sqrt(power[i]*power[j]) is used.  This is because, if power1[i] or power1[j]
+   is zero, in the second case the power of an aspect also is zero.  In the
+   first case (original Astrolog) this isn't so.
+3. In the case of "Smart Cusps" (see helpfile.540), both opposite unrestricted
+   cusps have additions (but planets in this case gain an addition only from
+   one cusp).
+
+3) _Third_, added analogous calculations for parallel-contraparallel aspects,
+   where orbs are temporariliy decreased 6 times (to about 1 deg) and powers
+   of aspects 4 times. These are default values and both can be independently
+   set in the astrolog.dat file (i.e. one can for example decrease orbs 6
+   times, without changing a parallel's power).
+
+Changes 1. and 2. are used also in aspect power calculations with switch -a (-a0).
+
+Adding of position and aspect parts gives the TOTAL POWER of an object.
+
+
+POWERS OF SIGNS:
+
+Powers of signs are determined by power of ruler and powers of objects in that
+sign:
+
+power_of_sign[i] += power[rules(i)];    /* Power of ruler of sign */   ***
+
+powers of planets, placed in sign:
+
+power_of_sign[i] += power[j];        /* Powers of real objects in sign */
+
+or power of other objects in sign:
+
+power_of_sign[i] += power[j]/3.0;   /* Powers of other objects in sign */
+
+
+POWERS OF HOUSES:
+
+In this version analogous calculations of powers of houses (both
+natural and situational) are made.  They are determined by the initial power of
+house, power of cusp, powers of both situational and natural rulers and 
+powers of different objects in house.
+
+power_of_house[i] = rHouseInf[i];          /* Internal power of house  */ 
+power_of_house[i] += power[cusp[i]];       /* Power of house cusp      */   ***
+power_of_house[i] += power[rules(i)]/2.0;  /* Natural ruler of house   */   ***
+power_of_house[i] += power[rules(i)]/2.0;  /* Situative ruler of house */   ***
+
+powers of planets, placed in sign:
+
+power_of_sign[i] += power[j];        /* Powers of real objects in sign */
+
+or power of other objects in sign:
+
+power_of_sign[i] += power[j]/3.0;   /* Powers of other objects in sign */
+
+
+Note that in the astrolog.dat file there are two sets of powers connected with
+houses. Powers, which are set with the switch
+
+-Yj 21 32 <value1> <value2> ....
+
+are initial powers of house cusps as objects (so there are initial powers for
+Asc, Des, IC, MC, etc.), visible on the wheel.
+
+The second set is determined with the switch
+
+-YjC 1 12 <value1> <value2> ....
+
+These powers are used in planetary power calculations (as an addition to a
+planet's power if the planet is placed in a respective house).  Also these are
+the initial powers of the houses, as used above.  So these are different powers
+and they influence different things in a chart.
+
+
+ADDITIONAL CALCULATIONS IN INFLUENCE CHARTS:
+
+The last table lists components of aspect powers which planets (and unrestricted
+cusps) have.
+They are:
+ 
+  1. Sum of harmonic aspects. 
+  2. Sum of tension aspects 
+  3. Harmonic/tension sum, where harmonic aspect powers have positive values 
+     and tension aspects powers negative ones.  A planet with both tension
+     and harmonic aspects can be actually end up in sum neutral (but have a big 
+     influence by aspect).
+  4. Sum of conjunctions which planets make.
+  5. Total sum of aspects - more aspected planets have a bigger sum, even if they
+     are neutral by tension/harmony.
