@@ -1,0 +1,236 @@
+Astrolog (version 5.41G) command switches:
+ -H: Display this help list.
+ -Hc: Display program credits and copyrights.
+ -HC: Display names of zodiac signs and houses.
+ -HO: Display available planets and other celestial objects.
+ -HA: Display available aspects, their angles, and present orbs.
+ -HF: Display names of astronomical constellations.
+ -HS: Display information about planets in the solar system.
+ -HI: Display meanings of signs, houses, planets, and aspects.
+ -He: Display all info tables together (-Hc-H-Y-HX-HC-HO-HA-HF-HS-HI).
+ -Q: Prompt for more command switches after display finished.
+ -Q0: Like -Q but prompt for additional switches on startup.
+ -M <1-48>: Run the specified command switch macro.
+ -M0 <1-48> <string>: Define the specified command switch macro.
+ -Y: Display help list of less commonly used command switches.
+
+Switches which determine the type of chart to display:
+ -v: Display list of object positions (chosen by default).
+ -v0: Like -v but express velocities relative to average speed.
+ -w [<rows>]: Display chart in a graphic house wheel format.
+ -w0 [..]: Like -w but reverse order of objects in houses 4..9.
+ -g: Display aspect and midpoint grid among planets.
+ -g0: Like -g but flag aspect configurations (e.g. Yod's) too.
+ -g0: For comparison charts, show midpoints instead of aspects.
+ -ga: Like -g but indicate applying instead of difference orbs.                                                                                                                       
+ -gp: Like -g but generate parallel and contraparallel aspects.
+ -a: Display list of all aspects ordered by influence.
+ -a0: Like -a but display aspect summary too.
+ -a[0]a: Like -a but indicate applying and separating orbs.
+ -a[0]p: Like -a but do parallel and contraparallel aspects.
+ -m: Display all object midpoints in sorted zodiac order.
+ -m0: Like -m but display midpoint summary too.
+ -ma: Like -m but show aspects from midpoints to planets as well.
+ -Z: Display planet locations with respect to the local horizon.
+ -Z0: Like -Z but express coordinates relative to polar center.
+ -Zd: Search day for object local rising and setting times.
+ -S: Display x,y,z coordinate positions of planets in space.
+ -l: Display Gauquelin sectors for each planet in chart.
+ -l0: Like -l but approximate sectors using Placidus cusps.
+ -j: Display astrological influences of each object in chart.
+ -j0: Like -j but include influences of each zodiac sign as well.
+ -L [<step>]: Display astro-graph locations of planetary angles.
+ -L0 [..]: Like -L but display list of latitude crossings too.
+ -K: Display a calendar for given month.
+ -Ky: Like -K but display a calendar for the entire year.
+ -d [<step>]: Print all aspects and changes occurring in a day.
+ -dm: Like -d but print all aspects for the entire month.
+ -dy: Like -d but print all aspects for the entire year.
+ -dY <years>: Like -d but search within a number of years.
+ -dp <month> <year>: Print aspects within progressed chart.
+ -dpy <year>: Like -dp but search for aspects within entire year.
+ -dpY <year> <years>: Like -dp but search within number of years.
+ -dp[y]n: Search for progressed aspects in current month/year.
+ -D: Like -d but display aspects by influence instead of time.
+ -E: Display planetary ephemeris for given month.
+ -Ey: Display planetary ephemeris for the entire year.
+ -EY <years>: Display planetary ephemeris for a number of years.
+ -e: Print all charts together (i.e. -v-w-g0-a-m-Z-S-l-K-j0-L0-d-D-E).
+ -t <month> <year>: Compute all transits to natal planets in month.
+ -tp <month> <year>: Compute progressions to natal in month for chart.
+ -tr <month> <year>: Compute all returns in month for chart.
+ -t[p]y: <year>: Compute transits/progressions for entire year.
+ -t[p]Y: <year> <years>: Compute transits for a number of years.
+ -t[py]n: Compute transits to natal planets for current time now.
+ -T <month> <day> <year>: Display transits ordered by influence.
+ -Tp <month> <day> <year>: Print progressions instead of transits.
+ -T[p]n: Display transits ordered by influence for current date.
+ -P [<parts>]: Display list of Arabic parts and their positions.
+ -P0 [<parts>]: Like -P but display formulas with terms reversed.
+ -P[z,n,f]: Order parts by position, name, or formula.
+ -I [<columns>]: Print interpretation of selected charts.
+
+Switches which affect how the chart parameters are obtained:
+ -n: Compute chart for this exact moment using current time.
+ -n[d,m,y]: Compute chart for start of current day, month, year.
+ -z [<zone>]: Change the default time zone (for -d-E-t-q options).
+ -z0 [<offset>]: Change the default daylight time setting.
+ -zl <long> <lat>: Change the default longitude & latitude.
+ -zt <time>: Set only the time of current chart.
+ -zd <date>: Set only the day of current chart.
+ -zm <month>: Set only the month of current chart.
+ -zy <year>: Set only the year of current chart.
+ -zi <name> <place>: Set name and place strings of current chart.
+ -q <month> <date> <year> <time>: Compute chart with defaults.
+ -qd <month> <date> <year>: Compute chart for noon on date.
+ -qm <month> <year>: Compute chart for first of month.
+ -qy <year>: Compute chart for first day of year.
+ -qa <month> <date> <year> <time> <zone> <long> <lat>:
+     Compute chart automatically given specified data.
+ -qb <month> <date> <year> <time> <daylight> <zone> <long> <lat>:
+     Like -qa but takes additional parameter for daylight offset.
+ -qj <day>: Compute chart for time of specified Julian day.
+ -i <file>: Compute chart based on info in file.
+ -i[2,3,4] <file>: Load chart info into chart slots 2, 3, or 4.
+ -o <file> [..]: Write parameters of current chart to file.
+ -o0 <file> [..]: Like -o but output planet/house positions.
+ -os <file>, > <file>: Redirect output of text charts to file.
+
+Switches which affect what information is used in a chart:
+ -R [<obj1> [<obj2> ..]]: Restrict specific bodies from displays.
+ -R0 [<obj1> ..]: Like -R but restrict everything first.
+ -R1 [<obj1> ..]: Like -R0 but unrestrict and show all objects.
+ -R[C,u,U]: Restrict all minor cusps, all uranians, or stars.
+ -RT[0,1,C,u,U] [..]: Restrict transiting planets in -t lists.
+ -RA [<asp1> ..]: Restrict aspects by giving them negative orbs.
+ -C: Include angular and non-angular house cusps in charts.
+ -u: Include transneptunian/uranian bodies in charts.
+ -U: Include locations of fixed background stars in charts.
+ -U[z,l,n,b]: Order by azimuth, altitude, name, or brightness.
+ -A <0-18>: Specify the number of aspects to use in charts.
+ -Ao <aspect> <orb>: Specify maximum orb for an aspect.
+ -Am <planet> <orb>: Specify maximum orb allowed to a planet.
+ -Ad <planet> <orb>: Specify orb addition given to a planet.
+ -Aa <aspect> <angle>: Change the actual angle of an aspect.
+
+Switches which affect how a chart is computed:
+ -b: Use ephemeris files for more accurate location computations.
+ -b0: Like -b but display locations to the nearest second too.
+ -c <value>: Select a different default system of houses.
+     (0 = Placidus, 1 = Koch, 2 = Equal, 3 = Campanus,
+     4 = Meridian, 5 = Regiomontanus, 6 = Porphyry, 7 = Morinus,
+     8 = Topocentric, 9 = Alcabitius, 10 = Equal (MC),
+     11 = Neo-Porphyry, 12 = Whole, 13 = Vedic, 14 = None.)
+ -s [..]: Compute a sidereal instead of the normal tropical chart.
+ -sr: Compute right ascension locations relative to equator.
+ -s[z,h,d]: Display locations as in zodiac, hours/minutes, or degrees.
+ -h [<objnum>]: Compute positions centered on specified object.
+ -p <month> <day> <year>: Cast 2ndary progressed chart for date.
+ -p0 <month> <day> <year>: Cast solar arc chart for date.
+ -p[0]n: Cast progressed chart based on current date now.
+ -pd <days>: Set no. of days to progress / day (default 365.25).
+ -x <value>: Cast harmonic chart based on specified factor.
+ -1 [<objnum>]: Cast chart with specified object on Ascendant.
+ -2 [<objnum>]: Cast chart with specified object on Midheaven.
+ -3: Display objects in their zodiac decan positions.
+ -f: Display houses as sign positions (flip them).
+ -G: Compute houses based on geographic location only.
+ -J: Display wheel charts in Vedic format.
+ -9: Display objects in their zodiac navamsa positions.
+ -F <objnum> <sign> <deg>: Force object's position to be value.
+ -+ [<days>]: Cast chart for specified no. of days in the future.
+ -- [<days>]: Cast chart for specified no. of days in the past.
+ -+[m,y] [<value>]: Cast chart for no. of months/years in future.
+
+Switches for relationship and comparison charts:
+ -r <file1> <file2>: Compute a relationship synastry chart.
+ -rc <file1> <file2>: Compute a composite chart.
+ -rm <file1> <file2>: Compute a time space midpoint chart.
+ -r[c,m]0 <file1> <file2> <ratio1> <ratio2>: Weighted chart.
+ -rd <file1> <file2>: Print time span between files' dates.
+ -rb <file1> <file2>: Display biorhythm for file1 at time file2.
+ -r0 <file1> <file2>: Keep the charts separate in comparison.
+ -rp[0] <file1> <file2>: Like -r0 but do file1 progr. to file2.
+ -rt <file1> <file2>: Like -r0 but treat file2 as transiting.
+ -r[3,4]: Make graphics wheel chart tri-wheel or quad-wheel.
+ -y <file>: Display current house transits for particular chart.
+ -y[b,d,p,t] <file>: Like -r0 but compare to current time now.
+
+Switches to access graphics options:
+ -k: Display text charts using Ansi characters and color.
+ -k0: Like -k but only use special characters, not Ansi color.
+ -X: Create a graphics chart instead of displaying it as text.
+ -Xb[n,c,v,a,b]: Set bitmap file output mode to X11 normal,
+     compacted, very compact, Ascii (bmtoa), or Windows bmp.
+ -Xp: Create PostScript stroke graphic instead of bitmap file.
+ -Xp0: Like -Xp but create complete instead of encapsulated file.
+ -XM[0]: Create Windows metafile stroke graphic instead of bitmap.
+ -Xo <file>: Write output bitmap or graphic to specified file.
+ -Xm: Create monochrome graphic instead of one in color.
+ -Xr: Create chart graphic in reversed colors (white background).
+ -Xw <hor> [<ver>]: Change the size of chart graphic.
+ -Xs <100,200,300,400>: Change the size of map or characters by %.
+ -Xi: Create chart graphic in slightly modified form.
+ -Xt: Inhibit display of chart info at bottom of graphic.
+ -Xu: Inhibit display of a border around graphic.
+ -Xl: Inhibit labeling of object points in chart graphic.
+ -Xj: Don't clear screen between chart updates, drawing trails.
+ -X1 <object>: Rotate wheel charts so object is at left edge.
+ -X2 <object>: Rotate wheel charts so object is at top edge.
+ -XW: Simply create an image of the world map.
+ -XW0: Like -XW but do a non-rectangular Mollewide projection.
+ -XG [<degrees>]: Display the image of the world as a globe.
+ -XP: Like -XG but create the globe from a polar projection.
+ -XF: Display maps as constellations on the celestial sphere.
+
+Astrolog (version 5.41G) obscure command switches:
+ -Y: Display this help list.
+ -Yn: Compute location of true instead of mean node.
+ -Yd: Display dates in D/M/Y instead of M/D/Y format.
+ -Yt: Display times in 24 hour instead of am/pm format.
+ -YC: Automatically ignore insignificant house cusp aspects.
+ -Y8: Clip text charts at the rightmost (e.g. 80th) column.
+ -YQ <rows>: Pause text scrolling after a page full has printed.
+ -Yo: Output chart info and position files in old style format.
+ -Yc: Angular cusp objects are house positions instead of angles.
+ -Yz <min>: Forward clock by amount for current moment charts.
+ -Yl <1-36>: Toggle plus zone status of sector for sector chart.
+ -YP <-1,0,1>: Set how Arabic parts are computed for night charts.
+ -Yb <days>: Set number of days to span for biorhythm chart.
+ -YE <obj> <semi-major axis> <eccentricity (3)> <inclination (3)>
+     <perihelion (3)> <ascending node (3)> <time offset (3)>
+     Change orbit of object to be the given elements.
+ -YR <obj1> <obj2> <flag1>..<flag2>: Set restrictions for object range.
+ -YRT <obj1> <obj2> <flag1>..<flag2>: Transit restrictions for range.
+ -YR0 <flag1> <flag2>: Set restrictions for sign, direction changes.
+ -YRZ <rise> <zenith> <set> <nadir>: Set restrictions for -Zd chart.
+ -YAo <asp1> <asp2> <orb1>..<orb2>: Set aspect orbs for range.
+ -YAm <obj1> <obj2> <orb1>..<orb2>: Set max planet orbs for range.
+ -YAd <obj1> <obj2> <orb1>..<orb2>: Set planet orb additions for range.
+ -YAa <asp1> <asp2> <ang1>..<ang2>: Set planet aspect angles for range.
+ -Yj <obj1> <obj2> <inf1>..<inf2>: Set influences for object range.
+ -YjC <cusp1> <cusp2> <inf1>..<inf2>: Set influences for house cusps.
+ -YjA <asp1> <asp2> <inf1>..<inf2>: Set influences for aspect range.
+ -YjT <obj1> <obj2> <inf1>..<inf2>: Set transit influences for range.
+ -Yj0 <inf1> <inf2> <inf3> <inf4>: Set influences given to planets
+     in ruling sign, exalted sign, ruling house, exalted house.
+ -YJ <obj> <sign> <cosign>: Set sign planet rules and co-rules.
+ -YJ0 <obj> <sign>: Set zodiac sign given planet exalts in.
+ -YI <obj> <string>: Customize interpretation for object.
+ -YIa <sign> <string>: Customize interpretation adjective for sign.
+ -YIv <sign> <string>: Customize interpretation verb for sign.
+ -YIC <house> <string>: Customize interpretation for house.
+ -YIA <asp> <string>: Customize interpretation for aspect.
+ -YIA0 <asp> <string>: Customize aspect interpretation statement.
+ -YkC <fir> <ear> <air> <wat>: Customize element colors.
+ -YkA <asp1> <asp2> <col1>..<col2>: Customize aspect colors.
+ -Yk0 <1..7> <1..7> <col1>..<col2>: Customize 'rainbow' colors.
+ -Yk <0..8> <0..8> <col1>..<col2>: Customize 'general' colors.
+ -YXG <0-2><0-2><0-2><0-3>: Select among different graphic glyphs
+     for Capricorn, Uranus, Pluto, and Lilith.
+ -YXg <cells>: Set number of cells for graphic aspect grid.
+ -YXf <val>: Set usage of actual system fonts in graphic file.
+ -YXp <-1,0,1>: Set paper orientation for PostScript files.
+ -YXp0 <hor> <ver>: Set paper size for PostScript files.
+ -0[o,i,q,X]: Disallow file output, input, exiting, and graphics.
+ -;: Ignore rest of command line and treat it as a comment.
