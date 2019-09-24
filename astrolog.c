@@ -2213,7 +2213,7 @@ byte **argv;
 #ifdef SWITCHES
 void main(argc, argv)
 int argc;
-byte **argv;
+char **argv;
 {
 #else
 void main()
