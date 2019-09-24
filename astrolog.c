@@ -2211,7 +2211,7 @@ byte **argv;
 /* go process it, before actually calling a routine to do the neat stuff.   */
 
 #ifdef SWITCHES
-void main(argc, argv)
+void main(argc, argv) 
 int argc;
 char **argv;
 {
